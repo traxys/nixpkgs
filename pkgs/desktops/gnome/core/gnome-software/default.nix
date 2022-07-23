@@ -24,7 +24,9 @@
 , gtk4
 , gsettings-desktop-schemas
 , gnome-desktop
+, libgudev
 , libxmlb
+, malcontent
 , json-glib
 , libsecret
 , valgrind-light
@@ -42,11 +44,11 @@ in
 
 stdenv.mkDerivation rec {
   pname = "gnome-software";
-  version = "42.3";
+  version = "43.alpha";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-software/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "OM9whWmj12TU0NLt7KqG9Og57CK5ZvQf2tVleKDdM8A=";
+    sha256 = "Xx913hkGKXJyBeubS886hP1tpwxAdZAXB6V3sOh5P6g=";
   };
 
   patches = [
@@ -87,18 +89,19 @@ stdenv.mkDerivation rec {
     ostree
     polkit
     flatpak
+    libgudev
     libxmlb
+    malcontent
     libsysprof-capture
   ] ++ lib.optionals withFwupd [
     fwupd
   ];
 
   mesonFlags = [
-    "-Dgudev=false"
-    # FIXME: package malcontent parental controls
-    "-Dmalcontent=false"
     # Needs flatpak to upgrade
     "-Dsoup2=true"
+    # Requires /etc/machine-id, D-Bus system bus, etc.
+    "-Dtests=false"
   ] ++ lib.optionals (!withFwupd) [
     "-Dfwupd=false"
   ];
