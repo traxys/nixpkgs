@@ -40,13 +40,13 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-builder";
-  version = "43.alpha0";
+  version = "43.alpha1";
 
   outputs = [ "out" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "SSjohWD2mn6riFR8CBeHzadbzi85XMWivgj4K8b5ujY=";
+    sha256 = "gzf93kAfLM5ehYYbby79XWdTyuReAiqH80V5kPp8JDY=";
   };
 
   patches = [
@@ -121,13 +121,6 @@ stdenv.mkDerivation rec {
   ];
 
   doCheck = true;
-
-  postPatch = ''
-    # Drop after https://gitlab.gnome.org/GNOME/gnome-builder/-/merge_requests/609
-    patchShebangs build-aux/meson/post_install.py
-    substituteInPlace build-aux/meson/post_install.py \
-      --replace "gtk-update-icon-cache" "gtk4-update-icon-cache"
-  '';
 
   checkPhase = ''
     export NO_AT_BRIDGE=1
