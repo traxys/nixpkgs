@@ -23,11 +23,11 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-logs";
-  version = "42.0";
+  version = "43.beta";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-logs/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "TV5FFp1r9DkC16npoHk8kW65LaumuoWzXI629nLNq9c=";
+    sha256 = "naBuiFhl7dG/vPILLU6HwVAGUXKdZW//E77pNlCTldQ=";
   };
 
   patches = [
