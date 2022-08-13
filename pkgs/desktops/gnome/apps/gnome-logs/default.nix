@@ -1,12 +1,14 @@
 { stdenv
 , lib
 , fetchurl
+, fetchpatch
 , meson
 , ninja
 , pkg-config
 , gnome
 , glib
 , gtk4
+, desktop-file-utils
 , wrapGAppsHook4
 , gettext
 , itstool
@@ -16,7 +18,6 @@
 , docbook-xsl-nons
 , docbook_xml_dtd_43
 , systemd
-, python3
 , gsettings-desktop-schemas
 }:
 
@@ -29,8 +30,16 @@ stdenv.mkDerivation rec {
     sha256 = "naBuiFhl7dG/vPILLU6HwVAGUXKdZW//E77pNlCTldQ=";
   };
 
+  patches = [
+    # Remove GTK 3 depndency
+    # https://gitlab.gnome.org/GNOME/gnome-logs/-/merge_requests/46
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/gnome-logs/-/commit/f7fe4b6ff9f5ab70919b6747f95e38d0d48685b8.patch";
+      sha256 = "yZY7qYWkJrArqeu1E2xxbJnPggaxOG3sk7212PqMcpo=";
+    })
+  ];
+
   nativeBuildInputs = [
-    python3
     meson
     ninja
     pkg-config
@@ -41,6 +50,9 @@ stdenv.mkDerivation rec {
     libxslt
     docbook-xsl-nons
     docbook_xml_dtd_43
+    glib
+    gtk4
+    desktop-file-utils
   ];
 
   buildInputs = [
@@ -54,11 +66,6 @@ stdenv.mkDerivation rec {
   mesonFlags = [
     "-Dman=true"
   ];
-
-  postPatch = ''
-    chmod +x meson_post_install.py
-    patchShebangs meson_post_install.py
-  '';
 
   doCheck = true;
 
