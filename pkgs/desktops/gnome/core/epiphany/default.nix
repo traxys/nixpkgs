@@ -27,7 +27,6 @@
 , gcr
 , isocodes
 , desktop-file-utils
-, python3
 , nettle
 , gdk-pixbuf
 , gst_all_1
@@ -67,7 +66,6 @@ stdenv.mkDerivation rec {
     meson
     ninja
     pkg-config
-    python3
     wrapGAppsHook
     buildPackages.glib
     buildPackages.gtk3
@@ -107,11 +105,6 @@ stdenv.mkDerivation rec {
   mesonFlags = [
     "-Dunit_tests=disabled"
   ];
-
-  postPatch = ''
-    chmod +x post_install.py # patchShebangs requires executable file
-    patchShebangs post_install.py
-  '';
 
   passthru = {
     updateScript = gnome.updateScript {
