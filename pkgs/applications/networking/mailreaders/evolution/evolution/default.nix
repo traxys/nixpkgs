@@ -22,7 +22,7 @@
 , shared-mime-info
 , libical
 , db
-, gcr
+, gcr_4
 , sqlite
 , gnome
 , gnome-desktop
@@ -67,7 +67,7 @@ stdenv.mkDerivation rec {
     bogofilter
     db
     evolution-data-server
-    gcr
+    gcr_4
     gdk-pixbuf
     glib
     glib-networking
