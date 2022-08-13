@@ -20,6 +20,7 @@
 , wrapGAppsHook
 , libxslt
 , vala
+, gi-docgen
 , gnome
 , python3
 , shared-mime-info
@@ -29,7 +30,7 @@ stdenv.mkDerivation rec {
   pname = "gcr";
   version = "3.90.0";
 
-  outputs = [ "out" "dev" ];
+  outputs = [ "out" "dev" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
@@ -45,6 +46,7 @@ stdenv.mkDerivation rec {
     libxslt
     wrapGAppsHook
     vala
+    gi-docgen
     shared-mime-info
   ];
 
@@ -70,7 +72,6 @@ stdenv.mkDerivation rec {
   ];
 
   mesonFlags = [
-    "-Dgtk_doc=false"
     # We are still using ssh-agent from gnome-keyring.
     # https://github.com/NixOS/nixpkgs/issues/140824
     "-Dssh_agent=false"
@@ -82,6 +83,11 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     patchShebangs build/ gcr/fixtures/
+  '';
+
+  postFixup = ''
+    # Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.
+    moveToOutput "share/doc" "$devdoc"
   '';
 
   passthru = {
