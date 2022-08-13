@@ -91,7 +91,6 @@ stdenv.mkDerivation rec {
     p11-kit
     libgweather
     libaccounts-glib
-    json-glib
     icu
     sqlite
     libkrb5
@@ -114,6 +113,7 @@ stdenv.mkDerivation rec {
     libical
     libsoup_3
     libxml2
+    json-glib
   ];
 
   cmakeFlags = [
