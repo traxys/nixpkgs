@@ -4,19 +4,17 @@
 , gettext
 , gnome
 , libgtop
-, gtk3
-, libhandy
+, gtk4
+, libadwaita
 , pcre2
-, vte
+, vte-gtk4
 , appstream-glib
 , desktop-file-utils
-, git
 , meson
 , ninja
 , pkg-config
 , python3
-, sassc
-, wrapGAppsHook
+, wrapGAppsHook4
 , nixosTests
 }:
 
@@ -32,28 +30,20 @@ stdenv.mkDerivation rec {
   buildInputs = [
     gettext
     libgtop
-    gtk3
-    libhandy
+    gtk4
+    libadwaita
     pcre2
-    vte
-  ] ++ lib.optionals stdenv.isLinux [
-    gnome.nautilus
+    vte-gtk4
   ];
 
   nativeBuildInputs = [
     appstream-glib
     desktop-file-utils
-    git
     meson
     ninja
     pkg-config
     python3
-    sassc
-    wrapGAppsHook
-  ];
-
-  mesonFlags = lib.optionals (!stdenv.isLinux) [
-    "-Dnautilus=disabled"
+    wrapGAppsHook4
   ];
 
   passthru = {
