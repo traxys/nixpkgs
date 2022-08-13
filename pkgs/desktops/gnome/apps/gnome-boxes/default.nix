@@ -12,7 +12,6 @@
 , gobject-introspection
 , libxml2
 , gtk3
-, gtksourceview4
 , libvirt
 , spice-gtk
 , python3
@@ -97,7 +96,6 @@ stdenv.mkDerivation rec {
     gmp
     gnome.adwaita-icon-theme
     gtk3
-    gtksourceview4
     json-glib
     libapparmor
     libarchive
