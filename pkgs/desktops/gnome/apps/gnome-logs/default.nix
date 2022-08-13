@@ -1,20 +1,19 @@
 { stdenv
 , lib
 , fetchurl
-, fetchpatch
 , meson
 , ninja
 , pkg-config
 , gnome
 , glib
-, gtk3
-, wrapGAppsHook
+, gtk4
+, wrapGAppsHook4
 , gettext
 , itstool
-, libhandy
+, libadwaita
 , libxml2
 , libxslt
-, docbook_xsl
+, docbook-xsl-nons
 , docbook_xml_dtd_43
 , systemd
 , python3
@@ -30,33 +29,24 @@ stdenv.mkDerivation rec {
     sha256 = "naBuiFhl7dG/vPILLU6HwVAGUXKdZW//E77pNlCTldQ=";
   };
 
-  patches = [
-    # Fix test with GLib 2.73
-    # https://gitlab.gnome.org/GNOME/gnome-logs/-/merge_requests/41
-    (fetchpatch {
-      url = "https://gitlab.gnome.org/GNOME/gnome-logs/-/commit/724a1faedade8ec39effc86d0b52b96f351579c2.patch";
-      sha256 = "bOY9OQMuIV8QEaFQxfUJ+//m4qYZlxsKEF3bFANlmXo=";
-    })
-  ];
-
   nativeBuildInputs = [
     python3
     meson
     ninja
     pkg-config
-    wrapGAppsHook
+    wrapGAppsHook4
     gettext
     itstool
     libxml2
     libxslt
-    docbook_xsl
+    docbook-xsl-nons
     docbook_xml_dtd_43
   ];
 
   buildInputs = [
     glib
-    gtk3
-    libhandy
+    gtk4
+    libadwaita
     systemd
     gsettings-desktop-schemas
   ];
