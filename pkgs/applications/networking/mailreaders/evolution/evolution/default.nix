@@ -14,7 +14,6 @@
 , libpst
 , gspell
 , evolution-data-server
-, libgdata
 , libgweather
 , glib-networking
 , gsettings-desktop-schemas
@@ -83,7 +82,6 @@ stdenv.mkDerivation rec {
     libcanberra-gtk3
     geocode-glib_2
     cmark
-    libgdata
     libgweather
     libical
     libnotify
