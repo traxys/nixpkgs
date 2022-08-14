@@ -14,6 +14,7 @@
 , gtksourceview4
 , gnome
 , gsettings-desktop-schemas
+, runtimeShell
 }:
 
 python3.pkgs.buildPythonApplication rec {
@@ -57,7 +58,11 @@ python3.pkgs.buildPythonApplication rec {
   strictDeps = false;
 
   postPatch = ''
-    patchShebangs meson_shebang_normalisation.py
+    # Do not clear /usr/bin/env out of interpreter, patchShebangs will not work.
+    # (Introduced by https://github.com/GNOME/meld/commit/1a8c44ea48f2e6cbdc11c47f0c5754c47c343a0d)
+    echo > meson_shebang_normalisation.py '#! ${runtimeShell}
+    cp "$@"
+    '
   '';
 
   passthru = {
