@@ -56,6 +56,10 @@ python3.pkgs.buildPythonApplication rec {
   # https://github.com/NixOS/nixpkgs/issues/56943
   strictDeps = false;
 
+  postPatch = ''
+    patchShebangs meson_shebang_normalisation.py
+  '';
+
   passthru = {
     updateScript = gnome.updateScript {
       packageName = pname;
