@@ -13,6 +13,7 @@
 , libical
 , json-glib
 , libmspack
+, webkitgtk_4_1
 }:
 
 stdenv.mkDerivation rec {
@@ -39,6 +40,8 @@ stdenv.mkDerivation rec {
     libical
     json-glib
     libmspack
+    # For evolution-shell-3.0
+    webkitgtk_4_1
   ];
 
   cmakeFlags = [
