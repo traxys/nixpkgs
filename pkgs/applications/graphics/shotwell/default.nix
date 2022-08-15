@@ -6,11 +6,11 @@
 , libexif
 , libgphoto2
 , libwebp
-, libsoup
+, libsoup_3
 , libxml2
 , vala
 , sqlite
-, webkitgtk
+, webkitgtk_4_1
 , pkg-config
 , gnome
 , gst_all_1
@@ -30,7 +30,6 @@
 , wrapGAppsHook
 , gobject-introspection
 , itstool
-, libgdata
 , libchamplain
 , libsecret
 , gsettings-desktop-schemas
@@ -66,10 +65,10 @@ stdenv.mkDerivation rec {
     libexif
     libgphoto2
     libwebp
-    libsoup
+    libsoup_3
     libxml2
     sqlite
-    webkitgtk
+    webkitgtk_4_1
     gst_all_1.gstreamer
     gst_all_1.gst-libav
     gst_all_1.gst-plugins-base
@@ -87,7 +86,6 @@ stdenv.mkDerivation rec {
     librest
     gcr
     gnome.adwaita-icon-theme
-    libgdata
     libchamplain
     libsecret
   ];
