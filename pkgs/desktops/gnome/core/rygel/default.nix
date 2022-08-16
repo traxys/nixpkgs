@@ -10,8 +10,8 @@
 , wrapGAppsHook
 , python3
 , glib
-, gssdp
-, gupnp
+, gssdp_1_6
+, gupnp_1_6
 , gupnp-av
 , gupnp-dlna
 , gst_all_1
@@ -56,8 +56,8 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     glib
-    gssdp
-    gupnp
+    gssdp_1_6
+    gupnp_1_6
     gupnp-av
     gupnp-dlna
     libgee
