@@ -1,4 +1,16 @@
-{ lib, stdenv, fetchurl, pkg-config, file, intltool, glib, gtk3, libxklavier, wrapGAppsHook, gnome }:
+{ lib
+, stdenv
+, fetchurl
+, meson
+, ninja
+, pkg-config
+, gobject-introspection
+, glib
+, gtk3
+, libxklavier
+, wrapGAppsHook
+, gnome
+}:
 
 stdenv.mkDerivation rec {
   pname = "libgnomekbd";
@@ -12,9 +24,10 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    file
-    intltool
+    meson
+    ninja
     pkg-config
+    gobject-introspection
     wrapGAppsHook
   ];
 
