@@ -18,9 +18,8 @@
 , systemd
 , gobject-introspection
 , wrapGAppsHook
-, libxslt
-, vala
 , gi-docgen
+, vala
 , gnome
 , python3
 , shared-mime-info
@@ -43,10 +42,9 @@ stdenv.mkDerivation rec {
     ninja
     gettext
     gobject-introspection
-    libxslt
+    gi-docgen
     wrapGAppsHook
     vala
-    gi-docgen
     shared-mime-info
   ];
 
@@ -82,7 +80,7 @@ stdenv.mkDerivation rec {
   PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR = "${placeholder "out"}/lib/systemd/user";
 
   postPatch = ''
-    patchShebangs build/ gcr/fixtures/
+    patchShebangs gcr/fixtures/
   '';
 
   postFixup = ''
