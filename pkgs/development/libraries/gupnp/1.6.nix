@@ -74,6 +74,7 @@ stdenv.mkDerivation rec {
 
   passthru = {
     updateScript = gnome.updateScript {
+      attrPath = "gupnp_1_6";
       packageName = pname;
     };
   };
