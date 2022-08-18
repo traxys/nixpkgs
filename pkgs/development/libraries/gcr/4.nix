@@ -92,6 +92,7 @@ stdenv.mkDerivation rec {
 
   passthru = {
     updateScript = gnome.updateScript {
+      attrPath = "gcr_4";
       packageName = pname;
     };
   };
