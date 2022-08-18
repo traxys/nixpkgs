@@ -63,6 +63,7 @@ stdenv.mkDerivation rec {
 
   passthru = {
     updateScript = gnome.updateScript {
+      attrPath = "gssdp_1_6";
       packageName = pname;
     };
 
