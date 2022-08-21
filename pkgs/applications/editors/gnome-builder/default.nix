@@ -3,6 +3,7 @@
 , ctags
 , cmark
 , desktop-file-utils
+, editorconfig-core-c
 , fetchurl
 , flatpak
 , gnome
@@ -24,7 +25,6 @@
 , ninja
 , ostree
 , d-spy
-, pcre
 , pcre2
 , pkg-config
 , python3
@@ -78,6 +78,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     ctags
     cmark
+    editorconfig-core-c
     flatpak
     gnome.devhelp
     libgit2-glib
@@ -95,7 +96,6 @@ stdenv.mkDerivation rec {
     libxml2
     ostree
     d-spy
-    pcre
     pcre2
     python3
     sysprof
@@ -121,6 +121,12 @@ stdenv.mkDerivation rec {
   ];
 
   doCheck = true;
+
+  postPatch = ''
+    patchShebangs build-aux/meson/post_install.py
+    substituteInPlace build-aux/meson/post_install.py \
+      --replace "gtk-update-icon-cache" "gtk4-update-icon-cache"
+  '';
 
   checkPhase = ''
     export NO_AT_BRIDGE=1
