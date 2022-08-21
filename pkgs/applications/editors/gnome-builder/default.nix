@@ -80,7 +80,6 @@ stdenv.mkDerivation rec {
     cmark
     editorconfig-core-c
     flatpak
-    gnome.devhelp
     libgit2-glib
     libpeas
     libportal-gtk4
