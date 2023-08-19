@@ -2289,6 +2289,8 @@ self: super: with self; {
 
   csrmesh  = callPackage ../development/python-modules/csrmesh { };
 
+  cssbeautifier = callPackage ../development/python-modules/cssbeautifier { };
+
   csscompressor = callPackage ../development/python-modules/csscompressor { };
 
   cssmin = callPackage ../development/python-modules/cssmin { };
