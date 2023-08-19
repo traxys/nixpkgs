@@ -4886,6 +4886,8 @@ self: super: with self; {
 
   html-sanitizer = callPackage ../development/python-modules/html-sanitizer { };
 
+  html-tag-names = callPackage ../development/python-modules/html-tag-names { };
+
   html-text = callPackage ../development/python-modules/html-text { };
 
   htseq = callPackage ../development/python-modules/htseq { };
