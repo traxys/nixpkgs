@@ -1,0 +1,13 @@
+diff --git a/Makefile.in b/Makefile.in
+index b82053d..3e4379e 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -90,7 +90,7 @@ umu-dist: $(OBJDIR)/.build-umu-dist
+ umu-dist-install: umu-dist
+ 	$(info :: Installing umu )
+ 	install -d $(DESTDIR)$(PYTHONDIR)/$(INSTALLDIR)
+-	$(PYTHON_INTERPRETER)  -m installer --destdir=$(DESTDIR) $(OBJDIR)/*.whl
++	$(PYTHON_INTERPRETER)  -m installer --prefix=$(DESTDIR) $(OBJDIR)/*.whl
+ 
+ ifeq ($(FLATPAK), xtrue)
+ umu-install: version-install umu-dist-install
